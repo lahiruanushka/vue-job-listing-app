@@ -1,5 +1,16 @@
+<script setup>
+  import Navbar from '@/components/Navbar.vue';
+  import Hero from '@/components/Hero.vue';
+  import HomeCards from '@/components/HomeCards.vue';
+  import JobListings from '@/components/JobListings.vue';
+
+</script>
+
 <template>
-   <div class="text-blue-500">
-    <h1 class="text-2xl font-bold">Jobs Post App</h1>
-    </div>
+  <div>
+    <Navbar />
+    <Hero title="Test Title" subtitle="Test subtitle"/>
+    <HomeCards />
+    <JobListings />
+  </div>
 </template>
