@@ -1,48 +1,43 @@
 <script setup>
-  import jobData from '@/jobs.json';
-  import { ref } from 'vue';
+import JobListing from './JobListing.vue';
+import jobData from '@/jobs.json';
+import { ref, defineProps } from 'vue';
 
-  // Define a reactive reference to store job listings
-  const jobs = ref(jobData.jobs); // Access the 'jobs' array from jobData
+// Define props
+const props = defineProps({
+  limit: Number,
+  showButton: {
+    type: Boolean,
+    default: false
+  }
+});
 
-  console.log(jobs.value); // Output to verify data
-
+// Jobs data
+const jobs = ref(jobData.jobs); // Access 'jobs' array within jobData
 </script>
 
 <template>
-    <div v-for="job in jobs" :key="job.id">
-          <div class="bg-white rounded-xl shadow-md relative">
-            <div class="p-4">
-              <div class="mb-6">
-                <div class="text-gray-600 my-2">{{ job.type }}</div>
-                <h3 class="text-xl font-bold">{{ job.title}}</h3>
-              </div>
-
-              <div class="mb-5">
-               {{ job.description}}
-              </div>
-
-              <h3 class="text-green-500 mb-2">{{ job.salary}}</h3>
-
-              <div class="border border-gray-100 mb-5"></div>
-
-              <div class="flex flex-col lg:flex-row justify-between mb-4">
-                <div class="text-orange-700 mb-3">
-                  <i class="fa-solid fa-location-dot text-lg"></i>
-                {{ job.locatioin}}
-                </div>
-                <a
-                  href="job.html"
-                  class="h-[36px] bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-center text-sm"
-                >
-                  Read More
-                </a>
-              </div>
-            </div>
-          </div>
+  <section class="bg-white rounded-xl shadow-md relative">
+    <div class="container-xl lg:container mx-auto">
+      <h2 class="text-3xl font-bold text-green-500 mb-6 text-center">
+        Browse Jobs
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+        <JobListing v-for="job in jobs.slice(0, props.limit || jobs.length)" :key="job.id" :job="job" />
       </div>
-  </template>
+    </div>
+  </section>
+
+  <section v-if="props.showButton" class="m-auto max-w-lg my-10 px-6">
+    <a
+      href="/jobs"
+      class="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
+    >
+      View All Jobs
+    </a>
+  </section>
+</template>
 
 <style scoped>
-  /* Add scoped styles here */
+/* Add scoped styles here */
 </style>
