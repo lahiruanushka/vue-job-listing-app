@@ -1,12 +1,15 @@
 <script setup>
+  import router from '@/router';
 	import { reactive} from 'vue';
+  import axios from 'axios';
+  import { useToast } from 'vue-toastification';
 
 	const form = reactive({
 		type: 'Full-Time',
 		title: '',
 		description: '',
 		salary: '',
-		location: 'sfafsaf',
+		location: '',
 		company: {
 			name: '',
 			description: '',
@@ -14,6 +17,36 @@
 			contactPhone: '',
 		}
 	});
+
+  const toast = useToast();
+
+  const handleSubmit = async () => {
+    const newJob = {
+      title: form.title,
+      type: form.type,
+      location: form.location,
+      description: form.description,
+      salary: form.salary,
+      company: {
+        name: form.company.name,
+        decription: form.company.description,
+        contactEmail: form.company.contactEmail,
+        contactPhone: form.company.contactPhone,
+      },
+    };
+
+    console.log(newJob);
+
+     try {
+    const response = await axios.post(`/api/jobs/`,newJob);
+    toast.success('Job added successfully');
+    router.push(`/jobs/${response.data.id}`);
+  } catch (error) {
+    console.error('Error inserting job.', error);
+    toast.error('Job was not added');
+
+  } 
+  };
 </script>
 
 <template>
@@ -22,7 +55,7 @@
         <div
           class="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0"
         >
-          <form>
+          <form @submit.prevent="handleSubmit">
             <h2 class="text-3xl text-center font-semibold mb-6">Add Job</h2>
 
             <div class="mb-4">
@@ -48,7 +81,7 @@
                 >Job Listing Name</label
               >
               <input
-              	v-model="form.name"
+              	v-model="form.title"
                 type="text"
                 id="name"
                 name="name"
