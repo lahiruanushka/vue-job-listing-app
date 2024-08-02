@@ -4,41 +4,28 @@ import { defineProps } from 'vue';
 defineProps({
   title: {
     type: String,
-    default: '',
+    default: 'Become a Vue Dev',
   },
   subtitle: {
     type: String,
-    default: '',
-  }
+    default: 'Find the Vue job that fits your skills and needs',
+  },
 });
 </script>
 
 <template>
-  <section class="bg-white py-20 mb-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+  <section class="bg-green-700 py-20 mb-4">
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center"
+    >
       <div class="text-center">
-        <h1 class="text-5xl font-extrabold text-gray-900 sm:text-6xl md:text-7xl">
-          {{ title || 'Find Your Dream Job' }}
+        <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
+          {{ title }}
         </h1>
-        <p class="my-6 text-2xl text-gray-700 sm:text-3xl md:text-4xl">
-          {{ subtitle || 'Search for job listings that suit your career goals.' }}
+        <p class="my-4 text-xl text-white">
+          {{ subtitle }}
         </p>
       </div>
     </div>
   </section>
 </template>
-
-<style scoped>
-/* Custom CSS */
-section {
-  background: linear-gradient(135deg, #f9fafb, #f3f4f6);
-}
-
-h1 {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-p {
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-</style>
