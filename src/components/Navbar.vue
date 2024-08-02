@@ -2,81 +2,71 @@
 import { RouterLink, useRoute } from 'vue-router';
 import logo from '@/assets/img/logo.png';
 
-const route = useRoute();
-
 const isActiveLink = (routePath) => {
+  const route = useRoute();
   return route.path === routePath;
-}
+};
 </script>
 
 <template>
-  <nav class="bg-white border-b border-gray-200">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+  <nav class="bg-green-700 border-b border-green-500">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="flex h-20 items-center justify-between">
-        <!-- Logo -->
-        <RouterLink class="flex items-center space-x-2" to="/">
-          <img class="h-10 w-auto" :src="logo" alt="Vue Jobs" />
-          <span class="hidden md:block text-gray-800 text-2xl font-bold">Jobs Finder</span>
-        </RouterLink>
-        <!-- Navigation Links -->
-        <div class="md:flex md:items-center">
-          <div class="flex space-x-4">
-            <RouterLink 
-              to="/" 
-              :class="[
-                isActiveLink('/') ? 'active' : 'text-gray-800', 
-                'hover:bg-gray-100', 
-                'rounded-md', 
-                'px-3', 
-                'py-2', 
-                'transition duration-300'
-              ]">Home
-            </RouterLink>
-            <RouterLink 
-              to="/jobs" 
-              :class="[
-                isActiveLink('/jobs') ? 'active' : 'text-gray-800', 
-                'hover:bg-gray-100', 
-                'rounded-md', 
-                'px-3', 
-                'py-2', 
-                'transition duration-300'
-              ]">Jobs
-            </RouterLink>
-            <RouterLink 
-              to="/jobs/add" 
-              :class="[
-                isActiveLink('/jobs/add') ? 'active' : 'text-gray-800', 
-                'hover:bg-gray-100', 
-                'rounded-md', 
-                'px-3', 
-                'py-2', 
-                'transition duration-300'
-              ]">Add Job
-            </RouterLink>
+        <div
+          class="flex flex-1 items-center justify-center md:items-stretch md:justify-start"
+        >
+          <!-- Logo -->
+          <RouterLink class="flex flex-shrink-0 items-center mr-4" to="/">
+            <img class="h-10 w-auto" :src="logo" alt="Vue Jobs" />
+            <span class="hidden md:block text-white text-2xl font-bold ml-2"
+              >Vue Jobs</span
+            >
+          </RouterLink>
+          <div class="md:ml-auto">
+            <div class="flex space-x-2">
+              <RouterLink
+                to="/"
+                :class="[
+                  isActiveLink('/')
+                    ? 'bg-green-900'
+                    : 'hover:bg-gray-900 hover:text-white',
+                  'text-white',
+                  'px-3',
+                  'py-2',
+                  'rounded-md',
+                ]"
+                >Home</RouterLink
+              >
+              <RouterLink
+                to="/jobs"
+                :class="[
+                  isActiveLink('/jobs')
+                    ? 'bg-green-900'
+                    : 'hover:bg-gray-900 hover:text-white',
+                  'text-white',
+                  'px-3',
+                  'py-2',
+                  'rounded-md',
+                ]"
+                >Jobs</RouterLink
+              >
+              <RouterLink
+                to="/jobs/add"
+                :class="[
+                  isActiveLink('/jobs/add')
+                    ? 'bg-green-900'
+                    : 'hover:bg-gray-900 hover:text-white',
+                  'text-white',
+                  'px-3',
+                  'py-2',
+                  'rounded-md',
+                ]"
+                >Add Job</RouterLink
+              >
+            </div>
           </div>
         </div>
       </div>
     </div>
   </nav>
 </template>
-
-<style scoped>
-/* Custom CSS */
-.container {
-  max-width: 1200px;
-}
-
-a {
-  font-size: 1rem;
-}
-
-a:hover {
-  transform: scale(1.05);
-}
-
-.active {
-  background-color: #e5e7eb; /* Highlight color */
-  font-weight: bold;
-}
-</style>
