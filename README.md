@@ -136,6 +136,11 @@ The main dashboard where all job postings are displayed.
 
 ![Job Listings](/screenshots/job-listings.png)
 
+### Job Listing View
+The job listing details are displayed.
+
+![Job Listings](/screenshots/job-listing.png)
+
 ### Add Job Form
 User-friendly form for creating job posts.
 
